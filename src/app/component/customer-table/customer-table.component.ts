@@ -14,8 +14,8 @@ export class CustomerTableComponent implements OnInit {
   pageSizes = [5, 10, 15, 20];
   displayedColumns = ['image', 'id', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
 
-  pageSize: number = 5;
   pageNumber: number = 0;
+  pageSize: number = 5;
   sortKey = 'id';
   sortDirection = 'asc';
 
