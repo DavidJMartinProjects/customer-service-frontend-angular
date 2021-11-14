@@ -22,11 +22,11 @@ export class CustomerTableComponent implements OnInit {
   constructor(private customerService: CustomerService) {}
 
   ngOnInit(): void {
-    this.fetchCustomers(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection);
+    this.fetchCustomers();
   }
 
-  fetchCustomers(pageNumber: number, pageSize: number, sortKey: string, sortDirection: string) {
-    this.customerService.getCustomerPage(pageNumber, pageSize, sortKey, sortDirection).subscribe(
+  fetchCustomers() {
+    this.customerService.getCustomerPage(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection).subscribe(
       data => {
         this.customerPage = data;
       }
@@ -36,13 +36,13 @@ export class CustomerTableComponent implements OnInit {
   onPageChanged(event: PageEvent) {
     this.pageNumber = event.pageIndex;
     this.pageSize = event.pageSize;    
-    this.fetchCustomers(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection);
+    this.fetchCustomers();
   }
 
   onSortChange(sortEvent: Sort) {
     this.sortKey = sortEvent.active;
     this.sortDirection = sortEvent.direction;
-    this.fetchCustomers(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection);
+    this.fetchCustomers();
   }
 
 }
