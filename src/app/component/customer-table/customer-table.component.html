@@ -53,6 +53,6 @@
         </table>        
 
     </div>    
-    <mat-paginator [length]="customerPage.totalElements" [pageSize]="tableSize" [pageSizeOptions]="[3, 5, 10]"
+    <mat-paginator [length]="customerPage.totalElements" [pageSize]="pageSize" [pageSizeOptions]="pageSizes"
     showFirstLastButtons (page)="onPageChanged($event)"></mat-paginator>
 </div>

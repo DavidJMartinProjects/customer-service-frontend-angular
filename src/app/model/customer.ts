@@ -1,5 +1,4 @@
 export interface Customer {
-
     id: string;
     firstName: string;
     lastName: string;
@@ -8,5 +7,4 @@ export interface Customer {
     country: string;
     email: string;
     image: string;
-
 }
