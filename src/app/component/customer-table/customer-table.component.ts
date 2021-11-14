@@ -1,14 +1,14 @@
+import { CustomerPage } from './../../model/customer-page.model';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
-import { CustomersDataSource } from 'src/app/service/customers.datasource';
 
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
+import { MatSort, Sort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/operators';
-import { merge, fromEvent } from "rxjs";
+import { merge, fromEvent, BehaviorSubject } from "rxjs";
 
 @Component({
   selector: 'app-customer-table',
@@ -16,53 +16,45 @@ import { merge, fromEvent } from "rxjs";
   styleUrls: ['./customer-table.component.css']
 })
 export class CustomerTableComponent implements OnInit {
-
-  dataSource!: CustomersDataSource;
-  displayedColumns = ['image', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
+  
+  customerPage: any;
   tableSizes = [5, 10, 15, 20];
-  tableSize: any = this.tableSizes[0];
+  tableSize: number = 5;
+  pageNumber: number = 0;
+  sortKey = 'id';
+  sortDirection = 'asc';
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('input') input: ElementRef;
-  @Input('mat-sort-header') id: string;
+  displayedColumns = ['image', 'id', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
+  
+  // @ViewChild(MatSort) sort: MatSort;
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.dataSource = new CustomersDataSource(this.customerService);
-    this.dataSource.loadCustomers(1, 5, 'id', 'ASC');
+    this.fetchCustomers(this.pageNumber, this.tableSize, this.sortKey, this.sortDirection);
   }
 
-  ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    fromEvent(this.input.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadCustomersPage();
-        })
-      )
-      .subscribe();
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        tap(() => this.loadCustomersPage())
-      )
-      .subscribe();
-
+  fetchCustomers(pageNumber: number, tableSize: number, sortKey: string, sortDirection: string) {
+    this.customerService.getCustomerPage(pageNumber, tableSize, sortKey, sortDirection).subscribe(
+      data => {
+        this.customerPage = data;
+      }
+    )
   }
 
-  loadCustomersPage() {    
-    this.dataSource.loadCustomers(
-      this.paginator.pageIndex,
-      this.paginator.pageSize,      
-      this.sort.active,
-      this.sort.direction
-    );
+  onPageChanged(event: PageEvent) {
+    this.tableSize = event.pageSize;
+    this.pageNumber = event.pageIndex;
+    this.tableSize = event.pageSize;    
+    this.fetchCustomers(this.pageNumber, this.tableSize, this.sortKey, this.sortDirection);
+  }
+
+  onSortChange(sortEvent: Sort) {
+    console.log("sortEvent" + sortEvent.active);
+    console.log("sortEvent" + sortEvent.direction);
+    this.sortKey = sortEvent.active;
+    this.sortDirection = sortEvent.direction;
+    this.fetchCustomers(this.pageNumber, this.tableSize, this.sortKey, this.sortDirection);
   }
 
 }

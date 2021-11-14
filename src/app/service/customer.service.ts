@@ -17,14 +17,12 @@ export class CustomerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCustomerPage(pageNumber: number, pageSize: number, sortKey: string, sortDirection: string): Observable<Customer[]> {
+  getCustomerPage(pageNumber: number, pageSize: number, sortKey: string, sortDirection: string): Observable<CustomerPage> {
     console.info("pageSize: " + pageSize + ", pageNumber: " + pageNumber);
     console.info("sortKey: " + sortKey + ", sortDirection: " + sortDirection);
     var query = `?pageNumber=${pageNumber}&pageSize=${pageSize}&sortKey=${sortKey}&sortDirection=${sortDirection}`;
 
-    return this.httpClient.get<CustomerPage>(this.baseUrl + query).pipe(
-      map(response => response.customers)
-    );
+    return this.httpClient.get<CustomerPage>(this.baseUrl + query);
   }
 
   remove(id: string) {
