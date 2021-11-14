@@ -26,11 +26,12 @@ export class CustomerTableComponent implements OnInit {
   }
 
   fetchCustomers() {
-    this.customerService.getCustomerPage(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection).subscribe(
-      data => {
-        this.customerPage = data;
-      }
-    )
+    this.customerService.getCustomerPage(this.pageNumber, this.pageSize, this.sortKey, this.sortDirection)
+      .subscribe(
+        data => {
+          this.customerPage = data;
+        }
+      )
   }
 
   onPageChanged(event: PageEvent) {
