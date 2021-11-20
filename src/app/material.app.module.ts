@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     // since we're exporting these modules, add them to export
@@ -30,7 +31,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatPaginatorModule,
         MatSortModule,
         MatProgressSpinnerModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatExpansionModule
     ]
 })
 export class AppMaterialModule { }

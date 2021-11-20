@@ -1,11 +1,20 @@
 <div class="container">
+    
+    <div class="dateFilter text-center my-2">
+        <button mat-raised-button [matMenuTriggerFor]="belowMenu">Filter Column</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <mat-form-field class="mx-3">
+            <input matInput placeholder="Search term" #input>
+        </mat-form-field>
+        <button mat-raised-button class="mx-1">Search</button>
+        <button mat-raised-button>Clear</button>
+    </div>
 
-    <mat-form-field>
-        <input matInput placeholder="Search Customers" #input>    
-    </mat-form-field>
-
-    <div class="d-flex flex-row-reverse bd-highlight mb-2"> 
-        <table mat-table [dataSource]="customerPage.customers" class="mat-elevation-z6"  
+    <div class="d-flex flex-row-reverse bd-highlight mb-2">
+        <table mat-table [dataSource]="customerPage.customers" class="mat-elevation-z6"
             (matSortChange)="onSortChange($event)" matSort matSortDirection="asc" matSortDisableClear>
 
             <ng-container matColumnDef="image">
@@ -50,9 +59,9 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>        
+        </table>
 
-    </div>    
+    </div>
     <mat-paginator [length]="customerPage.totalElements" [pageSize]="pageSize" [pageSizeOptions]="pageSizes"
-    showFirstLastButtons (page)="onPageChanged($event)"></mat-paginator>
+        showFirstLastButtons (page)="onPageChanged($event)"></mat-paginator>
 </div>
