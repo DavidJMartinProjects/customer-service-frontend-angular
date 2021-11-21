@@ -11,11 +11,11 @@ import { Sort } from "@angular/material/sort";
 export class CustomerTableComponent implements OnInit {
   
   customerPage: any;  
-  pageSizes = [5, 10, 15, 20];
+  pageSizes = [4, 9];
   displayedColumns = ['image', 'id', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
 
   pageNumber: number = 0;
-  pageSize: number = 5;
+  pageSize: number = 9;
   sortKey = 'id';
   sortDirection = 'asc';
 

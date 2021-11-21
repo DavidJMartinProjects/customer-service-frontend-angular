@@ -1,8 +1,8 @@
-<mat-toolbar class = "mat-elevation-z2">
+<mat-toolbar class = "mat-elevation-z6">
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Customer Service</span>
+  <span>Admin Menu</span>
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>favorite</mat-icon>
@@ -12,4 +12,31 @@
   </button>
 </mat-toolbar>
 
-<app-customer-table></app-customer-table>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened class="mat-elevation-z6">
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>person</mat-icon>
+      <span>Person</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span>Info</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z6">
+      <app-customer-table></app-customer-table>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

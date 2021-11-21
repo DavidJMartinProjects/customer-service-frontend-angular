@@ -1,11 +1,16 @@
 table {    
-    width: 100%;    
+    width: 100%;  
 }
 
 img {
     margin: 5px;
 }
 
-/* mat-accordion {
-    position: absolute;
-} */
+.filter-menu {
+    padding-top: .5em;
+}
+
+mat-table {
+    border-radius: 16px;  
+}
+
