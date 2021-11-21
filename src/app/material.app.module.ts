@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     // since we're exporting these modules, add them to export
@@ -33,7 +34,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatProgressSpinnerModule,
         MatFormFieldModule,
         MatExpansionModule,
-
+        MatSelectModule
     ]
 })
 export class AppMaterialModule { }

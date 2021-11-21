@@ -10,7 +10,13 @@ img {
     padding-top: .5em;
 }
 
+.custom-btn {
+    background-color: #002b5c;
+    color: white;
+}
+
 mat-table {
     border-radius: 16px;  
 }
+
 

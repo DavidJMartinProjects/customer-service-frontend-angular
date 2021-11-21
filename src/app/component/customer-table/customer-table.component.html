@@ -1,16 +1,18 @@
 <div class="container">
-    
+
     <div class="text-center mx-8 filter-menu">
-        <button mat-raised-button [matMenuTriggerFor]="belowMenu">Filter Column</button>
+
+        <button mat-raised-button [matMenuTriggerFor]="belowMenu" class="custom-btn">Filter Column</button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
+            <div *ngFor="let column of filterColumns">
+                <button mat-menu-item>{{ column }}</button>
+            </div>
         </mat-menu>
         <mat-form-field class="mx-3">
             <input matInput placeholder="Search term" #input>
         </mat-form-field>
-        <button mat-raised-button class="mx-1">Search</button>
-        <button mat-raised-button>Clear</button>
+        <button mat-raised-button class="mx-1 custom-btn">Search</button>
+        <button mat-raised-button class="custom-btn">Clear</button>
     </div>
 
     <div class="d-flex flex-row-reverse bd-highlight mb-2">

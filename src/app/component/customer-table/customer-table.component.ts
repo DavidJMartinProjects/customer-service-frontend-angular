@@ -13,6 +13,7 @@ export class CustomerTableComponent implements OnInit {
   customerPage: any;  
   pageSizes = [4, 9];
   displayedColumns = ['image', 'id', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
+  filterColumns = ['id', 'firstName', 'lastName', 'address', 'city', 'country', 'email'];
 
   pageNumber: number = 0;
   pageSize: number = 9;
