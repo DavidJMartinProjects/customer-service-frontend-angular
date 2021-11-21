@@ -1,7 +1,6 @@
 <div class="container">
 
     <div class="text-center mx-8 filter-menu">
-
         <button mat-raised-button [matMenuTriggerFor]="belowMenu" class="custom-btn">Filter Column</button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
             <div *ngFor="let column of filterColumns">
